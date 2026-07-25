@@ -115,6 +115,129 @@ body {
   margin-top: 24px;
 }
 
+.accordion {
+  margin-top: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  background: rgba(0, 0, 0, 0.14);
+  overflow: hidden;
+}
+
+.accordion summary {
+  cursor: pointer;
+  padding: 16px 20px;
+  list-style: none;
+  color: var(--text);
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.04);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.accordion summary::-webkit-details-marker {
+  display: none;
+}
+
+.accordion summary::after {
+  content: '+';
+  float: right;
+  font-size: 1.2rem;
+}
+
+.accordion[open] summary::after {
+  content: '-';
+}
+
+.accordion-content {
+  padding: 20px;
+  display: grid;
+  gap: 20px;
+}
+
+.gc-table {
+  overflow-x: auto;
+}
+
+.gc-table-title {
+  margin-bottom: 10px;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.gc-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.gc-table th,
+.gc-table td {
+  padding: 12px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  text-align: left;
+}
+
+.gc-table th {
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.gc-table td {
+  color: var(--text-muted);
+}
+
+.gc-table .total-row td {
+  font-weight: 700;
+  color: var(--text);
+}
+
+.gc-calculator {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  padding: 18px;
+}
+
+.gc-calculator-title {
+  margin: 0 0 16px;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.form-row label {
+  display: grid;
+  gap: 10px;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+.form-row select,
+.form-row input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text);
+}
+
+.gc-result {
+  margin-top: 18px;
+  padding: 18px;
+  border-radius: 16px;
+  background: rgba(0, 0, 0, 0.2);
+  color: var(--text);
+}
+
+.gc-result p {
+  margin: 0 0 8px;
+  line-height: 1.5;
+}
+
 .metric-row {
   display: grid;
   grid-template-columns: 1fr auto;

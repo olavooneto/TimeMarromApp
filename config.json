@@ -1,7 +1,7 @@
 {
   "cestometro": {
     "totalDeCestas": "875",
-    "totalArrecadadas": "11",
+    "totalArrecadadas": "33",
     "ultimaAtualizacao": "01/09/2025"
   },
   "bazometro": {
@@ -13,6 +13,11 @@
     "totalNaIgreja": "26",
     "totalForaIgreja": "5",
     "totalMetaDeDoacoes": "50",
+    "ultimaAtualizacao": "25/07/2026"
+  },
+  "suaNfTemValor": {
+    "totalDeNfACadastrar": "300",
+    "totalDeDoacoes": "30",
     "ultimaAtualizacao": "25/07/2026"
   }
 }

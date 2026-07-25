@@ -30,6 +30,50 @@
           </div>
         </div>
         <div class="metric-summary" id="cestometroSummary"></div>
+        <details class="accordion" id="cestometroAccordion">
+          <summary>Detalhes do Cestômetro</summary>
+          <div class="accordion-content">
+            <div class="gc-table">
+              <div class="gc-table-title">Grupo | Cestas básicas por GC</div>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Grupo</th>
+                    <th>Cestas</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>Somos 1</td><td>109</td></tr>
+                  <tr><td>School</td><td>10</td></tr>
+                  <tr><td>Uni</td><td>25</td></tr>
+                  <tr><td>Vert</td><td>16</td></tr>
+                  <tr><td>RMC</td><td>88</td></tr>
+                  <tr class="total-row"><td>Total</td><td>875</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="gc-calculator">
+              <p class="gc-calculator-title">Calculadora por GC</p>
+              <div class="form-row">
+                <label>
+                  Seleção GC
+                  <select id="gcSelect">
+                    <option>Somos 1</option>
+                    <option>School</option>
+                    <option>Uni</option>
+                    <option>Vert</option>
+                    <option>RMC</option>
+                  </select>
+                </label>
+                <label>
+                  Número de membros
+                  <input id="gcMemberCount" type="number" min="1" value="10" />
+                </label>
+              </div>
+              <div class="gc-result" id="gcResult"></div>
+            </div>
+          </div>
+        </details>
       </section>
 
       <section class="metric-card" id="bazometroCard">
@@ -56,6 +100,19 @@
           </div>
         </div>
         <div class="metric-summary" id="sangueSummary"></div>
+      </section>
+
+      <section class="metric-card" id="suaNfCard">
+        <div class="metric-card__header">
+          <div>
+            <p class="metric-label">Sua NF</p>
+            <h2>Sua NF tem valor</h2>
+          </div>
+          <div class="chart-wrap">
+            <canvas id="suaNfChart" class="chart-canvas" aria-label="Sua NF tem valor pie chart"></canvas>
+          </div>
+        </div>
+        <div class="metric-summary" id="suaNfSummary"></div>
       </section>
     </main>
 

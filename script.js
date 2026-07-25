@@ -107,6 +107,46 @@ function validateBloodConfig(config) {
   };
 }
 
+const gcGroups = {
+  'Somos 1': 109,
+  School: 10,
+  Uni: 25,
+  Vert: 16,
+  RMC: 88,
+};
+const cestaPrice = 35;
+
+function updateGcCalculator() {
+  const select = document.getElementById('gcSelect');
+  const input = document.getElementById('gcMemberCount');
+  const result = document.getElementById('gcResult');
+  if (!select || !input || !result) return;
+
+  const group = select.value;
+  const totalCestas = gcGroups[group] || 0;
+  const members = Math.max(parseInt(input.value, 10) || 1, 1);
+  const exactCestas = totalCestas / members;
+  const roundedCestas = Math.ceil(exactCestas);
+  const exactValue = exactCestas * cestaPrice;
+  const roundedValue = roundedCestas * cestaPrice;
+
+  result.innerHTML = `
+    <p><strong>Meta total por GC de ${group}:</strong> ${totalCestas} cestas</p>
+    <p>Se tivermos ${members} membros no grupo, a meta é de apenas ${roundedCestas} cestas por membro!</p>
+    <p>Como cada cesta custa R$ ${cestaPrice.toFixed(2)}, o valor por membro fica em torno de R$ ${roundedValue.toFixed(2)} (ou R$ ${exactValue.toFixed(2)} no cálculo exato).</p>
+  `;
+}
+
+function setupGcCalculator() {
+  const select = document.getElementById('gcSelect');
+  const input = document.getElementById('gcMemberCount');
+  if (!select || !input) return;
+
+  select.addEventListener('change', updateGcCalculator);
+  input.addEventListener('input', updateGcCalculator);
+  updateGcCalculator();
+}
+
 async function loadData() {
   try {
     const res = await fetch(configUrl, { cache: 'no-store' });
@@ -116,6 +156,7 @@ async function loadData() {
     const bazData = computeMetric(config.bazometro.totalDeRoupas, config.bazometro.totalArrecadadas);
     const sangueConfig = validateBloodConfig(config.doacoesSangue);
     const sangueData = computeMetric(sangueConfig.target, sangueConfig.totalCollected);
+    const suaNfData = computeMetric(config.suaNfTemValor.totalDeNfACadastrar, config.suaNfTemValor.totalDeDoacoes);
 
     document.getElementById('cestometroSummary').innerHTML = formatCard([
       { label: 'Total de cestas', value: config.cestometro.totalDeCestas },
@@ -142,9 +183,19 @@ async function loadData() {
       { label: 'Última atualização', value: sangueConfig.ultimaAtualizacao },
     ]);
 
+    document.getElementById('suaNfSummary').innerHTML = formatCard([
+      { label: 'Total de NF à cadastrar', value: config.suaNfTemValor.totalDeNfACadastrar },
+      { label: 'Total de doações', value: config.suaNfTemValor.totalDeDoacoes },
+      { label: 'Restam', value: String(suaNfData.rest) },
+      { label: 'Total arrecadado %', value: `${suaNfData.percent}%` },
+      { label: 'Última atualização', value: config.suaNfTemValor.ultimaAtualizacao },
+    ]);
+
     createPieChart('cestometroChart', cestData.earned, cestData.rest, 'Arrecadadas', 'Restam');
     createPieChart('bazometroChart', bazData.earned, bazData.rest, 'Arrecadadas', 'Restam');
     createPieChart('sangueChart', sangueData.earned, sangueData.rest, 'Doações', 'Restam');
+    createPieChart('suaNfChart', suaNfData.earned, suaNfData.rest, 'Doações', 'Restam');
+    setupGcCalculator();
   } catch (err) {
     console.error('Erro ao carregar dados:', err);
     const grid = document.getElementById('dashboardGrid');
