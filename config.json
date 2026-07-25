@@ -1,0 +1,16 @@
+{
+  "cestometro": {
+    "totalDeCestas": "875",
+    "totalArrecadadas": "11",
+    "restam": "864",
+    "totalArrecadadoPercentual": "1%",
+    "ultimaAtualizacao": "01/09/2025"
+  },
+  "bazometro": {
+    "totalDeRoupas": "5000",
+    "totalArrecadadas": "306",
+    "restam": "4694",
+    "totalArrecadadoPercentual": "6%",
+    "ultimaAtualizacao": "25/07/2026"
+  }
+}

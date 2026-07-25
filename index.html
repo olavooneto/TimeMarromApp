@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ASV 2026 - Time Marrom Dashboard</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="app-header">
+      <div>
+        <p class="eyebrow">ASV 2026</p>
+        <h1>Time Marrom Dashboard</h1>
+      </div>
+      <p class="app-description">Painel interativo com os resultados atualizados dos desafios do Time Marrom.</p>
+    </header>
+
+    <main class="dashboard-grid" id="dashboardGrid">
+      <section class="metric-card" id="cestometroCard">
+        <div class="metric-card__header">
+          <div>
+            <p class="metric-label">Cestômetro</p>
+            <h2>Cestometro do Time Marrom</h2>
+          </div>
+          <div class="pizza-graphic" id="cestometroPizza" aria-hidden="true"></div>
+        </div>
+        <div class="metric-summary" id="cestometroSummary"></div>
+      </section>
+
+      <section class="metric-card" id="bazometroCard">
+        <div class="metric-card__header">
+          <div>
+            <p class="metric-label">Bazômetro</p>
+            <h2>Bazometro do Time Marrom</h2>
+          </div>
+          <div class="pizza-graphic" id="bazometroPizza" aria-hidden="true"></div>
+        </div>
+        <div class="metric-summary" id="bazometroSummary"></div>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <p>Atualize os valores em <code>config.json</code> e publique novamente.</p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
