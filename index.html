@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ASV 2026 - Time Marrom Dashboard</title>
   <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
 </head>
 <body>
   <div class="app-shell">
@@ -23,7 +25,9 @@
             <p class="metric-label">Cestômetro</p>
             <h2>Cestometro do Time Marrom</h2>
           </div>
-          <div class="pizza-graphic" id="cestometroPizza" aria-hidden="true"></div>
+          <div class="chart-wrap">
+            <canvas id="cestometroChart" class="chart-canvas" aria-label="Cestometro pie chart"></canvas>
+          </div>
         </div>
         <div class="metric-summary" id="cestometroSummary"></div>
       </section>
@@ -34,7 +38,9 @@
             <p class="metric-label">Bazômetro</p>
             <h2>Bazometro do Time Marrom</h2>
           </div>
-          <div class="pizza-graphic" id="bazometroPizza" aria-hidden="true"></div>
+          <div class="chart-wrap">
+            <canvas id="bazometroChart" class="chart-canvas" aria-label="Bazometro pie chart"></canvas>
+          </div>
         </div>
         <div class="metric-summary" id="bazometroSummary"></div>
       </section>
