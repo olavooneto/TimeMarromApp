@@ -1,12 +1,12 @@
 {
   "cestometro": {
     "totalDeCestas": "875",
-    "totalArrecadadas": "33",
+    "totalArrecadadas": "42",
     "ultimaAtualizacao": "01/09/2025"
   },
   "bazometro": {
     "totalDeRoupas": "5000",
-    "totalArrecadadas": "306",
+    "totalArrecadadas": "535",
     "ultimaAtualizacao": "25/07/2026"
   },
   "doacoesSangue": {
