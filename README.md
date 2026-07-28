@@ -41,6 +41,12 @@ node server.js
 	- `SESSION_SECRET` : secret para as sessões do `express-session`. Defina em produção (ex: `set SESSION_SECRET=algo-seguro`).
 	- `ADMIN_EMAIL` : (opcional) limita o login a um email específico.
 
+- Admin password (generated):
+	- Plaintext (example): TimeMarrom2026!
+	- SHA-256 (set as `ADMIN_PASSWORD_HASH`): de4f08d7e9720fe25b5fe8a792394d3b9232a20031a1fe465a7fca822361e566
+
+	You can set the hash as an environment variable in Vercel or your host, or edit `api/_utils.js` / `server.js` to change the default value.
+
 - Fluxo de login:
 	- A página `/control` faz `POST /api/login` com `{ email, password }`.
 	- O servidor compara `sha256(password)` com o hash incorporado em `server.js`.

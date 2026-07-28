@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 3000;
 const CONFIG_PATH = path.join(__dirname, 'config.json');
 
 // Provided SHA-256 hash (user supplied)
-const ADMIN_PASSWORD_HASH = 'e4aa82ff0f4e6f35384c9696180c1eabba2279102dc1bf4077fe00f127604ae8';
+const ADMIN_PASSWORD_HASH = 'de4f08d7e9720fe25b5fe8a792394d3b9232a20031a1fe465a7fca822361e566';
 // Optional: set ADMIN_EMAIL env var to restrict login to a specific email
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL || '';
 

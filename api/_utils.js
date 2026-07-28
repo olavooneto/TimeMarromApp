@@ -4,7 +4,7 @@ const crypto = require('crypto');
 const jwt = require('jsonwebtoken');
 
 const CONFIG_PATH = path.join(__dirname, '..', 'config.json');
-const ADMIN_PASSWORD_HASH = process.env.ADMIN_PASSWORD_HASH || 'e4aa82ff0f4e6f35384c9696180c1eabba2279102dc1bf4077fe00f127604ae8';
+const ADMIN_PASSWORD_HASH = process.env.ADMIN_PASSWORD_HASH || 'de4f08d7e9720fe25b5fe8a792394d3b9232a20031a1fe465a7fca822361e566';
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL || '';
 const SESSION_SECRET = process.env.SESSION_SECRET || 'change-this-secret';
 
