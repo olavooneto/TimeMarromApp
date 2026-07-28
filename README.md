@@ -24,3 +24,30 @@ Este é um site estático simples para exibir os painéis Cestometro, Bazometro 
 - `styles.css`
 - `script.js`
 - `config.json`
+
+## Admin / Controle (backend)
+
+Uma pequena API Express foi adicionada para permitir editar `config.json` pelo navegador usando a rota administrativa `/control`.
+
+- Executar localmente:
+
+```powershell
+npm install
+node server.js
+# abrir http://localhost:3000/control
+```
+
+- Variáveis de ambiente úteis:
+	- `SESSION_SECRET` : secret para as sessões do `express-session`. Defina em produção (ex: `set SESSION_SECRET=algo-seguro`).
+	- `ADMIN_EMAIL` : (opcional) limita o login a um email específico.
+
+- Fluxo de login:
+	- A página `/control` faz `POST /api/login` com `{ email, password }`.
+	- O servidor compara `sha256(password)` com o hash incorporado em `server.js`.
+	- Após autenticação, `GET /api/config` retorna o JSON atual e `POST /api/save` sobrescreve `config.json` com validação.
+
+- Segurança e recomendações:
+	- Use `SESSION_SECRET` forte em produção.
+	- Deploy em HTTPS (Vercel, Render, etc.) quando exposto publicamente.
+	- Esta implementação aceita JSON enviado pelo cliente; revise/valide campos adicionais conforme necessário.
+

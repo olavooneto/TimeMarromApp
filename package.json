@@ -1,0 +1,13 @@
+{
+  "name": "time-marrom-dashboard",
+  "version": "1.0.0",
+  "description": "ASV 2026 - Time Marrom Dashboard with lightweight admin control",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "express-session": "^1.17.3"
+  }
+}

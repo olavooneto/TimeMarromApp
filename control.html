@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Control - Time Marrom</title>
+  <style>
+    body{font-family:Arial,Helvetica,sans-serif;background:#2d1b11;color:#f5e6d4;padding:18px}
+    .box{background:#41291d;padding:18px;border-radius:12px;max-width:980px;margin:0 auto}
+    label{display:block;margin:8px 0;color:#d6b39b}
+    input,textarea,select{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.03);color:#f5e6d4}
+    textarea{height:320px;font-family:monospace}
+    .row{display:flex;gap:12px}
+    .row>div{flex:1}
+    button{background:#d69d59;border:none;padding:10px 16px;border-radius:8px;color:#2d1b11;font-weight:700;cursor:pointer}
+    .muted{color:#d6b39b;font-size:0.9rem}
+    .top{display:flex;justify-content:space-between;align-items:center}
+  </style>
+</head>
+<body>
+  <div class="box">
+    <div class="top">
+      <h1>Control — Time Marrom</h1>
+      <div id="authArea"></div>
+    </div>
+    <p class="muted">Atualize os valores do painel e clique em Salvar. Login necessário para gravar.</p>
+
+    <div id="loginBox">
+      <label>Email
+        <input id="email" type="email" placeholder="seu@email.com" />
+      </label>
+      <label>Senha
+        <input id="password" type="password" placeholder="sua senha" />
+      </label>
+      <div style="margin-top:12px"><button id="loginBtn">Entrar</button></div>
+      <p class="muted">A senha será verificada via SHA-256; o servidor compara o hash.</p>
+    </div>
+
+    <div id="editor" style="display:none;margin-top:18px">
+      <label>config.json (JSON)</label>
+      <textarea id="configArea"></textarea>
+      <div style="margin-top:12px" class="row">
+        <div><button id="saveBtn">Salvar config.json</button></div>
+        <div><button id="logoutBtn" style="background:#8f5a2e">Sair</button></div>
+      </div>
+      <p id="status" class="muted"></p>
+    </div>
+  </div>
+
+  <script>
+    async function getConfig(){
+      const r = await fetch('/api/config');
+      return r.json();
+    }
+
+    async function show(){
+      const res = await getConfig();
+      document.getElementById('authArea').innerText = res.authenticated ? 'Autenticado' : '';
+      document.getElementById('configArea').value = JSON.stringify(res.config, null, 2);
+      document.getElementById('editor').style.display = res.authenticated ? 'block' : 'none';
+      document.getElementById('loginBox').style.display = res.authenticated ? 'none' : 'block';
+    }
+
+    document.getElementById('loginBtn').addEventListener('click', async ()=>{
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const res = await fetch('/api/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,password})});
+      const j = await res.json();
+      if(j.ok){
+        await show();
+      } else {
+        alert(j.message || 'Falha no login');
+      }
+    });
+
+    document.getElementById('saveBtn').addEventListener('click', async ()=>{
+      const txt = document.getElementById('configArea').value;
+      try{
+        const parsed = JSON.parse(txt);
+        const r = await fetch('/api/save',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({config:parsed})});
+        const j = await r.json();
+        if(j.ok){
+          document.getElementById('status').innerText = 'Salvo com sucesso.';
+        } else {
+          document.getElementById('status').innerText = 'Erro: '+(j.message||'');
+        }
+      }catch(e){
+        alert('JSON inválido: '+e.message);
+      }
+    });
+
+    document.getElementById('logoutBtn').addEventListener('click', async ()=>{
+      await fetch('/api/logout',{method:'POST'});
+      await show();
+    });
+
+    show();
+  </script>
+</body>
+</html>
