@@ -1,8 +1,8 @@
 {
   "cestometro": {
     "totalDeCestas": "875",
-    "totalArrecadadas": "258",
-    "ultimaAtualizacao": "06/08/2026"
+    "totalArrecadadas": "348",
+    "ultimaAtualizacao": "11/08/2026"
   },
   "bazometro": {
     "totalDeRoupas": "5000",
@@ -11,9 +11,9 @@
   },
   "doacoesSangue": {
     "totalNaIgreja": "26",
-    "totalForaIgreja": "5",
+    "totalForaIgreja": "10",
     "totalMetaDeDoacoes": "50",
-    "ultimaAtualizacao": "25/07/2026"
+    "ultimaAtualizacao": "14/08/2026"
   },
   "suaNfTemValor": {
     "totalDeNfACadastrar": "300",
